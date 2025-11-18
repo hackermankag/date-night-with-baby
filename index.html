@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Love's Reflections - Date Night Game</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      background: linear-gradient(135deg, #ffe4e9 0%, #f7fad2 100%);
+      color: #5d2a42;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      background: #fffbe7;
+      border-radius: 18px;
+      box-shadow: 0 6px 22px rgba(93,42,66,0.13);
+      padding: 2em;
+      max-width: 370px;
+      width: 90vw;
+      text-align: center;
+      margin: 1em auto;
+    }
+    h1 {
+      font-size: 2em;
+      margin-top: 0;
+      margin-bottom: 1em;
+    }
+    #question {
+      font-size: 1.25em;
+      min-height: 70px;
+      margin-bottom: 2em;
+      color: #5d2a42;
+      transition: all 0.2s;
+    }
+    button {
+      background: #fb7c7a;
+      color: #fff;
+      border: none;
+      padding: 1em 2em;
+      border-radius: 999px;
+      font-size: 1em;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 2px 6px rgba(93,42,66,0.10);
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #ff4179;
+    }
+    small {
+      display:block;
+      margin-top: 2em;
+      color: #887293;
+      font-size: 0.95em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Love's Reflections 💖</h1>
+    <div id="question">Tap "Next Question" to begin your date night!</div>
+    <button onclick="showNextQuestion()">Next Question</button>
+    <small>
+      Inspired by Song of Solomon.<br>
+      For couples to grow in love, romance, and faith.
+    </small>
+  </div>
+
+  <script>
+    const questions = [
+      // Add up to 40+ questions here!
+      "What is one way I made you feel loved this week?",
+      "What is one small thing I can do that would help our intimacy?",
+      "How can we pray for our marriage this week?",
+      "What is a romantic memory you want us to recreate?",
+      "What do you appreciate about my body that I may not know?",
+      "What is something new you'd like to try together (emotionally, spiritually, or physically)?",
+      "How can I serve you better in our marriage?",
+      "What is something we used to do as a couple that you miss?",
+      "What fear do you have about intimacy that you'd like us to work through?",
+      "What is one thing God has been teaching you about love?",
+      "What is a playful or flirty thing you wish I did more often?",
+      "What is the most meaningful compliment I’ve ever given you?",
+      "How can we grow spiritually as a couple this month?",
+      "What boundary or habit could help strengthen our intimacy?",
+      "What is something I do that builds your desire for me?",
+      "What new shared goal can we set for our marriage?",
+      "What part of Song of Solomon inspires you the most?",
+      "What do you want our lovemaking to communicate emotionally?",
+      "What is a fantasy, dream, or hope you want to express safely?",
+      "What can we do this week to feel more connected?",
+      // Additional Song of Solomon-inspired Questions
+      "What physical feature of mine do you find most poetic?",
+      "How do you like to be touched to feel most loved?",
+      "Describe the most romantic place you can imagine us visiting.",
+      "What gesture makes you feel swept off your feet?",
+      "Which verse in Song of Solomon would you like us to meditate on together?",
+      "What spiritual dream or hope do you have for our marriage?",
+      "What longing or desire do you have that you wish to share with me?",
+      "What adventure would you like us to go on together?",
+      "What inspires you about our journey together?",
+      "If you were to write a love poem to me, what would its theme be?",
+      "Describe me with a poetic metaphor (like 'eyes like doves,' 'lips like lilies').",
+      "What 'fruit' of our relationship has been the sweetest?",
+      "How would you describe our love in one powerful word?",
+      "What’s a 'little fox' in our marriage we need to catch together? (Song of Solomon 2:15)",
+      "How does faith impact our intimacy?",
+      "What wound from our past do you feel God wants to heal?",
+      "How do you feel most reassured after conflict?",
+      "What part of our relationship needs more tenderness?",
+      "What can we do to make our love feel new again?",
+      "What’s your favorite poetic line from Song of Solomon—and why?"
+    ];
+
+    // Shuffle array
+    function shuffle(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    let shuffled = shuffle(questions.slice());
+    let index = 0;
+
+    function showNextQuestion() {
+      document.getElementById('question').textContent = shuffled[index];
+      index++;
+      if (index >= shuffled.length) {
+        index = 0;
+        shuffled = shuffle(questions.slice());
+      }
+    }
+  </script>
+</body>
+</html>
