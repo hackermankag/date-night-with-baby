@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Love's Reflections - Date Night Game</title>
+  <title>Dim the Lights Date Night with Baby</title>
   <style>
     body {
       font-family: 'Segoe UI', Roboto, Arial, sans-serif;
@@ -35,9 +35,14 @@
     #question {
       font-size: 1.25em;
       min-height: 70px;
-      margin-bottom: 2em;
+      margin-bottom: 1em;
       color: #5d2a42;
       transition: all 0.2s;
+    }
+    #counter {
+      font-size: 1.1em;
+      color: #887293;
+      margin-bottom: 2em;
     }
     button {
       background: #fb7c7a;
@@ -64,18 +69,19 @@
 </head>
 <body>
   <div class="container">
-    <h1>Love's Reflections 💖</h1>
+    <h1>💖 Loud Reflections 💖</h1>
+    <div id="counter"></div>
     <div id="question">Tap "Next Question" to begin your date night!</div>
     <button onclick="showNextQuestion()">Next Question</button>
     <small>
-      Inspired by Song of Solomon, marriage books, and the Bible.<br>
+      I love you, baby.<br>
       For couples to grow in love, romance, and faith.
     </small>
   </div>
 
   <script>
     const questions = [
-      // Original 40+ questions
+      // All previous questions in full list...
       "What is one way I made you feel loved this week?",
       "What is one small thing I can do that would help our intimacy?",
       "How can we pray for our marriage this week?",
@@ -116,7 +122,6 @@
       "What part of our relationship needs more tenderness?",
       "What can we do to make our love feel new again?",
       "What’s your favorite poetic line from Song of Solomon—and why?",
-      // New 35+ questions inspired by Keller, Mack, Wheat, and the Bible
       "What was one quality that first attracted you to me, and how can I show more of it now?",
       "What’s a recent struggle or stress you haven’t shared with me? How can I support you?",
       "How do you feel most loved: words, touch, acts of service, quality time, or gifts?",
@@ -152,7 +157,6 @@
       "If you had three wishes for our future as a couple, what would they be?",
       "What’s an adventure—big or small—you want to experience in marriage?",
       "How can we create more margin for fun and laughter in our life together?",
-      // Spicy bonus
       "What bedroom activity have you always wanted to try, but never mentioned?",
       "How do you best receive affection outside the bedroom? How about in the bedroom?",
       "If you could describe our physical intimacy as a song or movie title, what would it be?",
@@ -161,7 +165,6 @@
       "Describe a romantic or sexy scenario you’d like us to create together."
     ];
 
-    // Shuffle array
     function shuffle(arr) {
       for (let i = arr.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -170,17 +173,33 @@
       return arr;
     }
 
+    // Shuffle questions at start
     let shuffled = shuffle(questions.slice());
+    let covered = [];
     let index = 0;
 
     function showNextQuestion() {
-      document.getElementById('question').textContent = shuffled[index];
-      index++;
-      if (index >= shuffled.length) {
-        index = 0;
+      if (index < shuffled.length) {
+        document.getElementById('question').textContent = shuffled[index];
+        covered.push(shuffled[index]);
+        index++;
+        document.getElementById('counter').textContent =
+          `Question ${index} of ${questions.length}`;
+      } else {
+        document.getElementById('question').textContent =
+          "All questions have been covered! Tap to start again.";
+        document.getElementById('counter').textContent =
+          `You've answered all ${questions.length} questions!`;
+        // Start over and reshuffle for next round
         shuffled = shuffle(questions.slice());
+        covered = [];
+        index = 0;
       }
     }
+
+    // Initialize counter
+    document.getElementById('counter').textContent =
+      `Question ${index} of ${questions.length}`;
   </script>
 </body>
 </html>
