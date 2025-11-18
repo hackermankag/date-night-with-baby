@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Date Night with Baby</title>
+  <title>Love's Reflections - Date Night Game</title>
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@500&display=swap" rel="stylesheet">
   <style>
     body {
@@ -17,7 +17,7 @@
       align-items: center;
       justify-content: center;
     }
-    .container {
+    .container, .welcome-container {
       background: rgba(255, 251, 231, 0.95);
       border-radius: 32px;
       box-shadow: 0 8px 32px rgba(93,42,66,0.23), 0 1.5px 0 0 #fb7c7a;
@@ -28,6 +28,9 @@
       margin: 2em auto;
       position: relative;
       overflow: hidden;
+    }
+    .hidden {
+      display: none;
     }
     h1 {
       font-family: 'Pacifico', cursive;
@@ -115,30 +118,66 @@
       50% {transform: translateY(-18px) scale(1.08);}
       100% {transform: translateY(0) scale(1);}
     }
+    .welcome-header {
+      font-family: 'Pacifico', cursive;
+      color: #d64e91;
+      font-size: 2em;
+      margin: 0.6em 0 1.4em 0;
+    }
+    .welcome-text {
+      font-size: 1.23em;
+      color: #6e3c60;
+      margin: 1.7em 0 2em 0;
+      line-height: 1.6;
+      font-family: 'Quicksand', sans-serif;
+    }
+    .welcome-go-btn {
+      padding: 1em 2.4em;
+      font-size: 1.1em;
+      margin-top: 2em;
+      margin-bottom: 1em;
+      background: linear-gradient(90deg, #e66dae 30%, #fb7c7a 100%);
+      font-family: 'Quicksand', sans-serif;
+    }
+    .welcome-go-btn:hover {
+      background: linear-gradient(90deg, #fb7c7a 70%, #d64e91 100%);
+    }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="container welcome-container" id="welcomePage">
     <div class="heart"></div>
     <div class="heart"></div>
     <div class="heart"></div>
     <div class="heart"></div>
-    <h1>💖Date Night with Baby💖</h1>
+    <div class="welcome-header">Hi Baby 💖</div>
+    <div class="welcome-text">Welcome to our date night.<br>Let's play a game.<br>
+      I made this just for you.<br>I love you.<br><strong>Let's go.</strong>
+    </div>
+    <button class="welcome-go-btn" onclick="startGame()">Start Game</button>
+  </div>
+
+  <div class="container hidden" id="mainPage">
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <h1>Love's Reflections 💖</h1>
     <div id="counter"></div>
     <div id="question">Tap "Next Question" to begin your date night!</div>
     <div class="btn-row">
       <button id="prevBtn" onclick="showPreviousQuestion()" disabled>&larr; Previous</button>
-      <button id="nextBtn" onclick="showNextQuestion()">Next &rarr;</button>
+      <button id="nextBtn" onclick="showNextQuestion()">Next Question &rarr;</button>
     </div>
     <small>
-      Created by Manzi Kagina...<br>
-      For couples to grow deeper in love and romance in marriage.
+      Inspired by Song of Solomon, marriage books, and the Bible.<br>
+      For couples to grow in love, romance, and faith.
     </small>
   </div>
 
   <script>
     const questions = [
-      // All 75+ questions from previous code here...
+      // All 75+ questions as before...
       "What is one way I made you feel loved this week?",
       "What is one small thing I can do that would help our intimacy?",
       "How can we pray for our marriage this week?",
@@ -155,6 +194,7 @@
       "What boundary or habit could help strengthen our intimacy?",
       "What is something I do that builds your desire for me?",
       "What new shared goal can we set for our marriage?",
+      "What part of Song of Solomon inspires you the most?",
       "What do you want our lovemaking to communicate emotionally?",
       "What is a fantasy, dream, or hope you want to express safely?",
       "What can we do this week to feel more connected?",
@@ -233,6 +273,14 @@
     let shuffled = shuffle(questions.slice());
     let index = 0;
 
+    function startGame() {
+      document.getElementById('welcomePage').classList.add('hidden');
+      document.getElementById('mainPage').classList.remove('hidden');
+      updateDisplay();
+      document.getElementById('prevBtn').disabled = true;
+      document.getElementById('nextBtn').textContent = "Next Question →";
+    }
+
     function showNextQuestion() {
       if (index < shuffled.length - 1) {
         index++;
@@ -267,10 +315,6 @@
         `Question ${index + 1} of ${questions.length}`;
       document.getElementById('prevBtn').disabled = index === 0;
     }
-
-    // Initialize first display and button states
-    updateDisplay();
-    document.getElementById('prevBtn').disabled = true;
   </script>
 </body>
 </html>
