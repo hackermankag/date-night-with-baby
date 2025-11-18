@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Dim the Lights Date Night with Baby</title>
+  <title>Love's Reflections - Date Night Game</title>
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@500&display=swap" rel="stylesheet">
   <style>
     body {
@@ -59,6 +59,13 @@
       background: linear-gradient(90deg, #ffeaf6 80%, #fcf6df 100%);
       box-shadow: 0 4px 16px #f6dee933, 0 1px 0 #fef6ee;
     }
+    .btn-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 1em;
+      margin-bottom: 0.8em;
+    }
     button {
       background: linear-gradient(90deg, #fb7c7a 60%, #d64e91 100%);
       color: #fff;
@@ -71,11 +78,17 @@
       box-shadow: 0 2px 10px rgba(93,42,66,0.13);
       letter-spacing: 0.5px;
       transition: background 0.2s, box-shadow 0.15s;
-      margin-bottom: 0.8em;
+      outline: none;
     }
-    button:hover {
+    button:hover:enabled {
       background: linear-gradient(90deg, #ff4179 60%, #e44a8c 100%);
       box-shadow: 0 3px 16px #e44a8c77;
+    }
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      background: #d1bccf;
+      box-shadow: none;
     }
     small {
       display: block;
@@ -84,7 +97,6 @@
       color: #c79cbb;
       font-size: 1em;
     }
-    /* Add romantic animated hearts */
     .heart {
       position: absolute;
       width: 32px;
@@ -114,7 +126,10 @@
     <h1>Love's Reflections 💖</h1>
     <div id="counter"></div>
     <div id="question">Tap "Next Question" to begin your date night!</div>
-    <button onclick="showNextQuestion()">Next Question</button>
+    <div class="btn-row">
+      <button id="prevBtn" onclick="showPreviousQuestion()" disabled>&larr; Previous</button>
+      <button id="nextBtn" onclick="showNextQuestion()">Next Question &rarr;</button>
+    </div>
     <small>
       Inspired by Song of Solomon, marriage books, and the Bible.<br>
       For couples to grow in love, romance, and faith.
@@ -123,7 +138,7 @@
 
   <script>
     const questions = [
-      // All 75+ questions - same list as before!
+      // All 75+ questions from previous code here...
       "What is one way I made you feel loved this week?",
       "What is one small thing I can do that would help our intimacy?",
       "How can we pray for our marriage this week?",
@@ -217,30 +232,46 @@
 
     // Shuffle questions at start
     let shuffled = shuffle(questions.slice());
-    let covered = [];
     let index = 0;
 
     function showNextQuestion() {
-      if (index < shuffled.length) {
-        document.getElementById('question').textContent = shuffled[index];
-        covered.push(shuffled[index]);
-        document.getElementById('counter').textContent =
-          `Question ${index + 1} of ${questions.length}`;
+      if (index < shuffled.length - 1) {
         index++;
-      } else {
+        updateDisplay();
+      } else if (index === shuffled.length - 1) {
+        index++;
         document.getElementById('question').textContent =
-          "All questions have been covered! Tap to start again with a new shuffle.";
+          "All questions have been covered! Tap 'Next' to reshuffle and start again.";
         document.getElementById('counter').textContent =
           `You've seen all ${questions.length} questions!`;
+        document.getElementById('prevBtn').disabled = false;
+        document.getElementById('nextBtn').textContent = "Restart & Shuffle";
+      } else {
         shuffled = shuffle(questions.slice());
-        covered = [];
         index = 0;
+        updateDisplay();
+        document.getElementById('nextBtn').textContent = "Next Question →";
       }
     }
 
-    // Initialize counter
-    document.getElementById('counter').textContent =
-      `Question ${index + 1} of ${questions.length}`;
+    function showPreviousQuestion() {
+      if (index > 0) {
+        index--;
+        updateDisplay();
+        document.getElementById('nextBtn').textContent = "Next Question →";
+      }
+    }
+
+    function updateDisplay() {
+      document.getElementById('question').textContent = shuffled[index];
+      document.getElementById('counter').textContent =
+        `Question ${index + 1} of ${questions.length}`;
+      document.getElementById('prevBtn').disabled = index === 0;
+    }
+
+    // Initialize first display and button states
+    updateDisplay();
+    document.getElementById('prevBtn').disabled = true;
   </script>
 </body>
 </html>
