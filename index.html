@@ -4,84 +4,126 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Dim the Lights Date Night with Baby</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@500&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
-      background: linear-gradient(135deg, #ffe4e9 0%, #f7fad2 100%);
+      font-family: 'Quicksand', 'Segoe UI', Roboto, Arial, sans-serif;
+      background: radial-gradient(circle at 60% 40%, #ffe4e9 60%, #faf9d3 100%);
       color: #5d2a42;
       margin: 0;
       padding: 0;
-      display: flex;
-      flex-direction: column;
       min-height: 100vh;
+      display: flex;
       align-items: center;
       justify-content: center;
     }
     .container {
-      background: #fffbe7;
-      border-radius: 18px;
-      box-shadow: 0 6px 22px rgba(93,42,66,0.13);
-      padding: 2em;
-      max-width: 370px;
-      width: 90vw;
+      background: rgba(255, 251, 231, 0.95);
+      border-radius: 32px;
+      box-shadow: 0 8px 32px rgba(93,42,66,0.23), 0 1.5px 0 0 #fb7c7a;
+      padding: 2.3em 1.2em 2em 1.2em;
+      max-width: 400px;
+      width: 92vw;
       text-align: center;
-      margin: 1em auto;
+      margin: 2em auto;
+      position: relative;
+      overflow: hidden;
     }
     h1 {
-      font-size: 2em;
+      font-family: 'Pacifico', cursive;
+      font-size: 2.1em;
       margin-top: 0;
-      margin-bottom: 1em;
-    }
-    #question {
-      font-size: 1.25em;
-      min-height: 70px;
-      margin-bottom: 1em;
-      color: #5d2a42;
-      transition: all 0.2s;
+      margin-bottom: 0.8em;
+      letter-spacing: 1px;
+      color: #d64e91;
+      text-shadow: 0 4px 17px #fee6ed, 0 1px 0 #e7a6ca;
     }
     #counter {
       font-size: 1.1em;
-      color: #887293;
-      margin-bottom: 2em;
+      color: #b087a5;
+      margin-bottom: 1.6em;
+      border-bottom: 1px dashed #f6c4d5;
+      padding-bottom: 0.5em;
+      font-family: 'Quicksand', sans-serif;
+    }
+    #question {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1.32em;
+      min-height: 83px;
+      margin-bottom: 1.8em;
+      margin-top: 0.5em;
+      color: #6e3c60;
+      transition: all 0.2s;
+      padding: 0.7em;
+      border-radius: 18px;
+      background: linear-gradient(90deg, #ffeaf6 80%, #fcf6df 100%);
+      box-shadow: 0 4px 16px #f6dee933, 0 1px 0 #fef6ee;
     }
     button {
-      background: #fb7c7a;
+      background: linear-gradient(90deg, #fb7c7a 60%, #d64e91 100%);
       color: #fff;
       border: none;
       padding: 1em 2em;
       border-radius: 999px;
-      font-size: 1em;
+      font-size: 1.08em;
       cursor: pointer;
       font-weight: bold;
-      box-shadow: 0 2px 6px rgba(93,42,66,0.10);
-      transition: background 0.2s;
+      box-shadow: 0 2px 10px rgba(93,42,66,0.13);
+      letter-spacing: 0.5px;
+      transition: background 0.2s, box-shadow 0.15s;
+      margin-bottom: 0.8em;
     }
     button:hover {
-      background: #ff4179;
+      background: linear-gradient(90deg, #ff4179 60%, #e44a8c 100%);
+      box-shadow: 0 3px 16px #e44a8c77;
     }
     small {
-      display:block;
-      margin-top: 2em;
-      color: #887293;
-      font-size: 0.95em;
+      display: block;
+      margin-top: 2.4em;
+      margin-bottom: 0.9em;
+      color: #c79cbb;
+      font-size: 1em;
+    }
+    /* Add romantic animated hearts */
+    .heart {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      background: #fb7c7a;
+      clip-path: path('M16 29s-13-8.13-13-15.76A7.28 7.28 0 0 1 16 5a7.28 7.28 0 0 1 13 8.24C29 20.87 16 29 16 29z');
+      opacity: 0.18;
+      animation: float 7s infinite linear;
+    }
+    .heart:nth-child(1) { top: 18px; left: 10px; animation-delay: 0s;}
+    .heart:nth-child(2) { top: 70px; right: 24px; background: #d64e91; animation-delay: 2s;}
+    .heart:nth-child(3) { bottom: 40px; left: 28px; background: #fb7c7a; animation-delay: 3.5s;}
+    .heart:nth-child(4) { bottom: 20px; right: 25px; background: #e7a6ca; animation-delay: 5s;}
+    @keyframes float {
+      0% {transform: translateY(0) scale(1);}
+      50% {transform: translateY(-18px) scale(1.08);}
+      100% {transform: translateY(0) scale(1);}
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>💖 Loud Reflections 💖</h1>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <h1>Love's Reflections 💖</h1>
     <div id="counter"></div>
     <div id="question">Tap "Next Question" to begin your date night!</div>
     <button onclick="showNextQuestion()">Next Question</button>
     <small>
-      I love you, baby.<br>
+      Inspired by Song of Solomon, marriage books, and the Bible.<br>
       For couples to grow in love, romance, and faith.
     </small>
   </div>
 
   <script>
     const questions = [
-      // All previous questions in full list...
+      // All 75+ questions - same list as before!
       "What is one way I made you feel loved this week?",
       "What is one small thing I can do that would help our intimacy?",
       "How can we pray for our marriage this week?",
@@ -182,15 +224,14 @@
       if (index < shuffled.length) {
         document.getElementById('question').textContent = shuffled[index];
         covered.push(shuffled[index]);
-        index++;
         document.getElementById('counter').textContent =
-          `Question ${index} of ${questions.length}`;
+          `Question ${index + 1} of ${questions.length}`;
+        index++;
       } else {
         document.getElementById('question').textContent =
-          "All questions have been covered! Tap to start again.";
+          "All questions have been covered! Tap to start again with a new shuffle.";
         document.getElementById('counter').textContent =
-          `You've answered all ${questions.length} questions!`;
-        // Start over and reshuffle for next round
+          `You've seen all ${questions.length} questions!`;
         shuffled = shuffle(questions.slice());
         covered = [];
         index = 0;
@@ -199,7 +240,7 @@
 
     // Initialize counter
     document.getElementById('counter').textContent =
-      `Question ${index} of ${questions.length}`;
+      `Question ${index + 1} of ${questions.length}`;
   </script>
 </body>
 </html>
